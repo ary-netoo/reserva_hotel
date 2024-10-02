@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Card from "../../components/Card.jsx";
 
 export default function Home() {
 
@@ -27,15 +28,21 @@ export default function Home() {
     return (
         <div>
             <h2>Lista de Hoteis</h2>
-            <ul>
+            <div>
                 {hoteis.map((hotel, index) => (
                     <li key={index}>
-                        {hotel.nome} - Classificacao: {hotel.classificacao} - {hotel.cidae} - {hotel.estado} - {hotel.diaria}
-                        <button onClick={() => removerHotel(index)}>Remover</button>
+                        <Card
+                            nome={hotel.nome}
+                            classificacao={hotel.classificacao}
+                            cidade={hotel.cidade}
+                            estado={hotel.estado}
+                            diaria={hotel.diaria}
+                            onRemove={() => removerHotel(index)}
+                        />
                     </li>
                 ))}
-            </ul>
-            <Link to="/produtos">Cadastrar Novo Hotel</Link>
+            </div>
+            <button><Link to="/produtos">Cadastrar Novo Hotel</Link></button>
         </div>
     );
 }
